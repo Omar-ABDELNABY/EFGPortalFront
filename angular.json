@@ -23,9 +23,33 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/bootstrap/bootstrap.css",
+              "src/assets/css/bootstrap/bootstrap-theme.css",
+              "src/assets/css/fontawesome/font-awesome.css",
+              "src/assets/css/app/app.v1.css",
+              "src/assets/css/app/email.css",
+              "src/assets/css/app/timeline.css",
+              "src/assets/css/switch-buttons/switch-buttons.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/jquery/jquery-1.9.1.min.js",
+              "src/assets/js/plugins/underscore/underscore-min.js",
+              "src/assets/js/bootstrap/bootstrap.min.js",
+              "src/assets/js/globalize/globalize.min.js",
+              "src/assets/js/plugins/nicescroll/jquery.nicescroll.min.js",
+              "src/assets/js/app/custom.js",
+              "src/assets/js/plugins/DevExpressChartJS/dx.chartjs.js",
+              "src/assets/js/plugins/DevExpressChartJS/world.js",
+              "src/assets/js/plugins/DevExpressChartJS/demo-charts.js",
+              "src/assets/js/plugins/DevExpressChartJS/demo-vectorMap.js",
+              "src/assets/js/plugins/sparkline/jquery.sparkline.min.js",
+              "src/assets/js/plugins/sparkline/jquery.sparkline.demo.js",
+              "src/assets/js/angular/todo.js",
+              "src/assets/js/plugins/calendar/calendar.js",
+              "src/assets/js/plugins/calendar/calendar-conf.js"
+
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
