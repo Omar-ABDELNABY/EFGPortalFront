@@ -1,0 +1,8 @@
+.navHermes {
+    z-index: 100000;
+    height: 47px;
+    background-color: #f2f2f4;
+    border-bottom: 1px solid #ececee;
+    box-shadow: 0px 0px 7px 8px rgba(0, 0, 0, 0.038);
+    border-radius: 0%;
+}
