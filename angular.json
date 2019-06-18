@@ -35,6 +35,7 @@
             ],
             "scripts": [
               "src/assets/js/jquery/jquery-1.9.1.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
               "src/assets/js/plugins/underscore/underscore-min.js",
               "src/assets/js/bootstrap/bootstrap.min.js",
               "src/assets/js/globalize/globalize.min.js",
@@ -49,7 +50,6 @@
               "src/assets/js/angular/todo.js",
               "src/assets/js/plugins/calendar/calendar.js",
               "src/assets/js/plugins/calendar/calendar-conf.js",
-              "src/assets/js/google-maps/googlemap-conf.js",
               "src/assets/js/app/custom.js"
             ],
             "es5BrowserSupport": true

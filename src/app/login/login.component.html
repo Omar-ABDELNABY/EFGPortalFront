@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-  <div class="col-lg-4 col-lg-offset-4">
-      <h3 class="text-center">Braio</h3>
+  <div class="col-lg-4 m-auto">
+      <h3 class="text-center">EFG Herms</h3>
         <p class="text-center">Sign in to get in touch</p>
         <hr class="clean">
         <form  #f="ngForm" (ngSubmit)="Login()">
@@ -15,12 +15,12 @@
           </div>
           <div class="form-group">
             <label class="cr-styled">
-                <input type="checkbox" ng-model="todo.done">
+                <input [(ngModel)]="loginData.RememberMe" type="checkbox" [ngModelOptions]="{standalone: true}">
                 <i class="fa"></i> 
             </label>
             Remember me
           </div>
-        <button type="submit" class="btn btn-purple btn-block">Sign in</button>
+        <button type="submit" class="btn cumin btn-block">Sign in</button>
         </form>
         <hr>
         

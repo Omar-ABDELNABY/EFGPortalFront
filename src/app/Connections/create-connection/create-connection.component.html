@@ -1,0 +1,56 @@
+<form>
+    <div class="m-3 p-3">
+        <h3 >Initiate your Connection</h3>
+        <p>Please select and specify the following parameters to speed up the creation process</p>
+        <div class="pt-3 bg-white">
+
+          <h6 class="ml-3 font-weight-bold">Client Details</h6>
+          <hr>
+          <div class="p-3 m-3">
+            <label for="Categories">Categories</label>
+            <input required name="Categories" class="form-control" type="text" placeholder="Bussiness">
+            <br><br> 
+          </div>
+
+          <h6 class="ml-3 font-weight-bold">Five Keys</h6>
+          <hr>
+          <div class="p-3 m-3">
+            <p>Please specify the following parameters accurately to be able to build the connection the right way</p>
+            <label for="Networks">1- Networks</label>
+            <input required name="Networks" class="form-control mb-3" type="text" placeholder="Bloomberg - EMSX">
+
+            <div class="dropdown mb-3">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+
+            <select class="form-control mb-3">
+              <option disabled selected>Select a Hub Network</option>
+              <option value="Bloomberg ESMX">Bloomberg ESMX</option>
+              <option value="Bloomberg ESMX NET">Bloomberg ESMX NET</option>
+              <option value="Fidessa Autex">Bloomberg ESMX NET</option>
+              <option value="Fidessa Normal">Bloomberg ESMX NET</option>
+            </select>
+
+            <label for="UATorProduction">2- UAT or Production</label>
+            <input required name="UATorProduction" class="form-control mb-3" type="text" placeholder="UAT">
+            <label for="Region">3- Region</label>
+            <input required name="Region" class="form-control mb-3" type="text" placeholder="EMEA">
+            <label for="TypeOfFlow">4- Type of flow that we support</label>
+            <input required name="TypeOfFlow" class="form-control mb-3" type="text" placeholder="CARE">
+            <input required class="mr-2" type="checkbox" [(ngModel)]="ShowHideSubhub" [ngModelOptions]="{standalone: true}"><span>Use Subhub</span><br>
+            <label for="Subhub" *ngIf="ShowHideSubhub">5- Subhub</label> 
+            <input *ngIf="ShowHideSubhub" name="Subhub" class="form-control mb-3" type="text" placeholder="ITG">
+            <br><br> 
+          </div>
+
+        <div class="text-center"><button type="submit" class="btn btn-dark">Create Connection</button></div>
+        </div>
+      </div>
+</form>

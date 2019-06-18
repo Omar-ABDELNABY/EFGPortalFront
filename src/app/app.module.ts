@@ -10,7 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { IndexComponent } from './index/index.component';
 import { ConnectionTimelineComponent } from './connection-timeline/connection-timeline.component';
 import { AuthenticationService } from './authentication.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { CreateConnectionComponent } from './Connections/create-connection/create-connection.component';
+import { AuthInterceptor } from './auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterationComponent,
     LoginComponent,
     IndexComponent,
-    ConnectionTimelineComponent
+    ConnectionTimelineComponent,
+    CreateConnectionComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+
   ],
   bootstrap: [AppComponent]
 })

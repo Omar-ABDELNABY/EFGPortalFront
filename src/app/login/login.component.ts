@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
     private router: Router,) {
-      this.loginData  = {Username:"", Password:""};
+      this.loginData  = {Username:"", Password:"", RememberMe:false};
      }
 
     loginData : ILogin;
@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
     this.authenticationService.Login(this.loginData).subscribe(resp => {
       console.log("resp");
       console.log(resp);
+      localStorage.setItem('token', resp["token"]);
+      localStorage.setItem("expiration", resp["expiration"] );
+      console.log(this.authenticationService.isLoggedIn());
       this.router.navigate(['/']);
     });
   }
