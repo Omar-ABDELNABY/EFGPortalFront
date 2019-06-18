@@ -13,6 +13,7 @@ import { AuthenticationService } from './authentication.service';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { CreateConnectionComponent } from './Connections/create-connection/create-connection.component';
 import { AuthInterceptor } from './auth-interceptor';
+import { ConnectionService } from './connection.service';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AuthInterceptor } from './auth-interceptor';
   ],
   providers: [
     AuthenticationService,
+    ConnectionService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

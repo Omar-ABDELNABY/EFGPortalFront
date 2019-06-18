@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
-    private router: Router,) {
+    private router: Router) {
       this.loginData  = {Username:"", Password:"", RememberMe:false};
      }
 
@@ -19,13 +19,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   Login(){
-    console.log("Login from component");
     this.authenticationService.Login(this.loginData).subscribe(resp => {
-      console.log("resp");
-      console.log(resp);
       localStorage.setItem('token', resp["token"]);
       localStorage.setItem("expiration", resp["expiration"] );
-      console.log(this.authenticationService.isLoggedIn());
       this.router.navigate(['/']);
     });
   }

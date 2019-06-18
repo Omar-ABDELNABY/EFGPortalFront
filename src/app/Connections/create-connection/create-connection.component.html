@@ -8,7 +8,7 @@
           <hr>
           <div class="p-3 m-3">
             <label for="Categories">Categories</label>
-            <input required name="Categories" class="form-control" type="text" placeholder="Bussiness">
+            <input required name="Categories" class="form-control" type="text" placeholder="e.g. Bussiness">
             <br><br> 
           </div>
 
@@ -17,41 +17,32 @@
           <div class="p-3 m-3">
             <p>Please specify the following parameters accurately to be able to build the connection the right way</p>
             <label for="Networks">1- Networks</label>
-            <input required name="Networks" class="form-control mb-3" type="text" placeholder="Bloomberg - EMSX">
-
-            <div class="dropdown mb-3">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown button
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
-
-            <select class="form-control mb-3">
+            <select  [(ngModel)]="newConnData.hubID" [ngModelOptions]="{standalone: true}"  
+            required name="Networks" class="form-control mb-3">
               <option disabled selected>Select a Hub Network</option>
-              <option value="Bloomberg ESMX">Bloomberg ESMX</option>
-              <option value="Bloomberg ESMX NET">Bloomberg ESMX NET</option>
-              <option value="Reuters Autex">Bloomberg ESMX NET</option>
-              <option value="Reuters Normal">Bloomberg ESMX NET</option>
-              <option value="Fidessa">Bloomberg ESMX NET</option>
+              <option value="1">Bloomberg ESMX</option>
+              <option value="2">Bloomberg ESMX NET</option>
+              <option value="3">Reuters Autex</option>
+              <option value="4">Reuters Normal</option>
+              <option value="5">Fidessa</option>
             </select>
 
             <label for="UATorProduction">2- UAT or Production</label>
-            <input required name="UATorProduction" class="form-control mb-3" type="text" placeholder="UAT">
+            <div class="row mb-3">
+                <div  class="col-sm-4"><input [(ngModel)]="newConnData.uat" [ngModelOptions]="{standalone: true}" required name="UATorProduction" type="radio" value="true"> UAT</div>
+                <div class="col-sm-4"><input [(ngModel)]="newConnData.uat" [ngModelOptions]="{standalone: true}" required name="UATorProduction" type="radio" value="false"> Production</div>
+            </div>
             <label for="Region">3- Region</label>
-            <input required name="Region" class="form-control mb-3" type="text" placeholder="EMEA">
+            <input [(ngModel)]="newConnData.targetRegion" [ngModelOptions]="{standalone: true}" required name="Region" class="form-control mb-3" type="text" placeholder="e.g. EMEA">
             <label for="TypeOfFlow">4- Type of flow that we support</label>
-            <input required name="TypeOfFlow" class="form-control mb-3" type="text" placeholder="CARE">
-            <input required class="mr-2" type="checkbox" [(ngModel)]="ShowHideSubhub" [ngModelOptions]="{standalone: true}"><span>Use Subhub</span><br>
-            <label for="Subhub" *ngIf="ShowHideSubhub">5- Subhub</label> 
-            <input *ngIf="ShowHideSubhub" name="Subhub" class="form-control mb-3" type="text" placeholder="ITG">
+            <input [(ngModel)]="newConnData.typeOfFlow" [ngModelOptions]="{standalone: true}" required name="TypeOfFlow" class="form-control mb-3" type="text" placeholder="e.g. CARE">
+            <input required class="mr-2" type="checkbox" [(ngModel)]="showHideSubhub" [ngModelOptions]="{standalone: true}"><span>Use Subhub</span><br>
+            <label for="Subhub" *ngIf="showHideSubhub">5- Subhub</label> 
+            <input [(ngModel)]="newConnData.subhubID" [ngModelOptions]="{standalone: true}"  *ngIf="showHideSubhub" name="Subhub" class="form-control mb-3" type="text" placeholder="e.g. ITG">
             <br><br> 
           </div>
 
-        <div class="text-center"><button type="submit" class="btn btn-dark">Create Connection</button></div>
+        <div class="text-center"><button type="submit" class="btn btn-dark" (click)="createNewConnection()">Create Connection</button></div>
         </div>
       </div>
 </form>

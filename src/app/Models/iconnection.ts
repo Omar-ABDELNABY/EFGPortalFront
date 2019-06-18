@@ -2,10 +2,12 @@ export interface Iconnection {
     connectionID: number,
     targetRegion: string,
     initiator: string,
-    client: string,
-    hub: string,
-    subhub: string,
+    clientID: number,
+    hubID: number,
+    subhubID: number,
     oms: string,
+    uat: boolean,
+    typeOfFlow: string,
 
     tag21: string,
     tag48: string,
@@ -19,6 +21,7 @@ export interface Iconnection {
 
     tag30: string,
     tag115: string
+
 }
 
 

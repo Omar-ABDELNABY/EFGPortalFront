@@ -8,9 +8,9 @@ import {ConnectionTimelineComponent} from "./connection-timeline/connection-time
 import {CreateConnectionComponent} from "./Connections/create-connection/create-connection.component"
 
 const routes: Routes = [
-  { path: "", redirectTo: "Register", pathMatch: "full" },
-  { path: "Register", component:RegisterationComponent},
-  {path:"Login",component:LoginComponent},
+  { path: "", redirectTo: "register", pathMatch: "full" },
+  { path: "register", component:RegisterationComponent},
+  {path:"login",component:LoginComponent},
   {path:"portal",component:IndexComponent,
   children: [
     { path: "x", component: ConnectionTimelineComponent },
