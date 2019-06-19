@@ -1,4 +1,4 @@
-<form>
+<form id="myForm">
     <div class="m-3 p-3">
         <h3 >Initiate your Connection</h3>
         <p>Please select and specify the following parameters to speed up the creation process</p>
@@ -7,8 +7,13 @@
           <h6 class="ml-3 font-weight-bold">Client Details</h6>
           <hr>
           <div class="p-3 m-3">
-            <label for="Categories">Categories</label>
-            <input required name="Categories" class="form-control" type="text" placeholder="e.g. Bussiness">
+            <label for="Client">Client</label>            
+            <select #Client="ngModel" name="Client" [(ngModel)]="newConnData.clientID" [ngModelOptions]="{standalone: true}"  
+            required class="form-control mb-3">
+              <option disabled selected>Select a Client</option>
+              <option *ngFor="let c of clients$ | async" [ngValue]="c.id">{{c.name}}</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="Client.touched && Client.invalid">Client is required</div>
             <br><br> 
           </div>
 
@@ -20,11 +25,7 @@
             <select  [(ngModel)]="newConnData.hubID" [ngModelOptions]="{standalone: true}"  
             required name="Networks" class="form-control mb-3">
               <option disabled selected>Select a Hub Network</option>
-              <option value="1">Bloomberg ESMX</option>
-              <option value="2">Bloomberg ESMX NET</option>
-              <option value="3">Reuters Autex</option>
-              <option value="4">Reuters Normal</option>
-              <option value="5">Fidessa</option>
+              <option *ngFor="let h of hubs$ | async" [ngValue]="h.id">{{h.name}}</option>
             </select>
 
             <label for="UATorProduction">2- UAT or Production</label>
@@ -38,11 +39,15 @@
             <input [(ngModel)]="newConnData.typeOfFlow" [ngModelOptions]="{standalone: true}" required name="TypeOfFlow" class="form-control mb-3" type="text" placeholder="e.g. CARE">
             <input required class="mr-2" type="checkbox" [(ngModel)]="showHideSubhub" [ngModelOptions]="{standalone: true}"><span>Use Subhub</span><br>
             <label for="Subhub" *ngIf="showHideSubhub">5- Subhub</label> 
-            <input [(ngModel)]="newConnData.subhubID" [ngModelOptions]="{standalone: true}"  *ngIf="showHideSubhub" name="Subhub" class="form-control mb-3" type="text" placeholder="e.g. ITG">
+            <select  [(ngModel)]="newConnData.subhubID" [ngModelOptions]="{standalone: true}"  
+            *ngIf="showHideSubhub" name="Subhub" class="form-control mb-3">
+              <option disabled selected>Select a Subhub</option>
+              <option *ngFor="let s of subhubs$ | async" [ngValue]="s.id">{{s.name}}</option>
+            </select>
             <br><br> 
           </div>
 
-        <div class="text-center"><button type="submit" class="btn btn-dark" (click)="createNewConnection()">Create Connection</button></div>
+        <div class="text-center"><button type="submit" class="btn btn-dark" ng-disable="myForm.$invalid" (click)="createNewConnection()">Create Connection</button></div>
         </div>
       </div>
 </form>

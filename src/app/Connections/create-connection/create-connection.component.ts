@@ -19,9 +19,16 @@ export class CreateConnectionComponent implements OnInit {
         this.newConnData.subhubID=null;
       this._showHideSubhub = val;
     }
-  newConnData = {} as Iconnection
+  newConnData = {} as Iconnection;
+  subhubs$;
+  hubs$;
+  clients$;
   constructor(private connectionService: ConnectionService,
-    private router: Router) {   }
+    private router: Router) { 
+      this.subhubs$ = connectionService.getSubhubs();
+      this.hubs$ = connectionService.getHubs();
+      this.clients$ = connectionService.getClients();
+      }
 
 
 

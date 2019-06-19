@@ -14,4 +14,14 @@ export class ConnectionService {
     return this.http.post(this.APIEndpoint+"/api/connections", body)
   }
 
+  getHubs(){
+    return this.http.get(this.APIEndpoint+"/api/hubs");
+  }
+  getSubhubs(){
+    return this.http.get(this.APIEndpoint+"/api/subhubs");
+  }
+  getClients(){
+    return this.http.get(this.APIEndpoint+"/api/clients");
+  }
+
 }
