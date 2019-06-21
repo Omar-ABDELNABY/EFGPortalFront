@@ -1,0 +1,29 @@
+
+<div class="m-3 p-3">
+    <h3 *ngIf="userHasConnections ==false">&nbsp;&nbsp;You don't have any connections!</h3>
+    <h3  *ngIf="userHasConnections == true">&nbsp;&nbsp;Current Connections</h3>
+    <div *ngIf="userHasConnections == true" class="p-5 bg-white ">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">Client</th>
+            <th scope="col">Hub</th>
+            <th scope="col">Subhub</th>
+            <th scope="col">Approved</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of userConnections$ | async ">
+            <th scope="row">{{c["connectionID"]}}</th>
+            <td>{{c["client"]["name"]}}</td>
+            <td>{{c["hub"]["name"]}}</td>
+            <td>{{c["subHub"]?c["subHub"]["name"]:"NONE"}}</td>
+            <td>{{c["approval==false"]}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
+

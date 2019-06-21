@@ -13,6 +13,9 @@ export class ConnectionService {
   createNewConnection(body: Iconnection){
     return this.http.post(this.APIEndpoint+"/api/connections", body)
   }
+  getUsersConnections(){
+    return this.http.get(this.APIEndpoint+"/api/connections/userConnections")
+  }
 
   getHubs(){
     return this.http.get(this.APIEndpoint+"/api/hubs");
@@ -23,5 +26,6 @@ export class ConnectionService {
   getClients(){
     return this.http.get(this.APIEndpoint+"/api/clients");
   }
+  
 
 }

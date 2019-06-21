@@ -6,3 +6,22 @@
     box-shadow: 0px 0px 7px 8px rgba(0, 0, 0, 0.038);
     border-radius: 0%;
 }
+.logoHolder{
+    float: left;
+    margin: 5px 0;
+}
+
+.logoHolder a {
+    background-image: url("/assets/images/EFGHermesCorporateAllIcons.png");
+    background-size: 500px;
+    width: 240px;
+    display: block;
+    height: 26px;
+    background-position: 0 -0px;
+    margin: 2px 0;
+    
+}
+.navbar-nav li.active > a {
+    color: #b0b91b;
+    font-weight: bold;
+}

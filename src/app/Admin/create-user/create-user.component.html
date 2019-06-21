@@ -1,0 +1,28 @@
+<form id="myForm">
+  <div class="m-3 p-3">
+      <h3 >Create User</h3>
+    <div class="pt-3 bg-white">
+      <div class="p-3 m-3">
+        <label for="Username">Username</label>            
+        <input [(ngModel)]="newUserData.Username" #Username="ngModel" [ngModelOptions]="{standalone: true}" required name="Username" class="form-control mb-3" type="text" placeholder="Enter Username">
+        <div class="alert alert-danger mb-3" *ngIf="Username.touched && Username.invalid">*Username is required</div>
+        <label for="Email">Email</label>            
+        <input [(ngModel)]="newUserData.Email" #Email="ngModel" [ngModelOptions]="{standalone: true}" required name="Email" class="form-control mb-3" type="email" placeholder="Enter Email">
+        <div class="alert alert-danger mb-3" *ngIf="Email.touched && Email.invalid">*Email is required</div>
+        <label for="Password">Password</label>            
+        <input [(ngModel)]="newUserData.Password" #Password="ngModel" [ngModelOptions]="{standalone: true}" required name="Password" class="form-control mb-3" type="password" placeholder="Enter Password">
+        <div class="alert alert-danger mb-3" *ngIf="Password.touched && Password.invalid">*Password is required</div>
+        <label for="Type">Type</label>            
+        <select #Type="ngModel" name="Type" [(ngModel)]="newUserData.Type" [ngModelOptions]="{standalone: true}"  
+        required class="form-control mb-3">
+          <option disabled selected>Select a Type</option>
+          <option *ngFor="let t of types" [ngValue]="t.Id">{{t.Name}}</option>
+        </select>
+        <div class="alert alert-danger mb-3" *ngIf="Type.touched && Type.invalid">*Type is required</div>
+        <br><br> 
+        </div>
+    </div>
+    <div class="text-center mb-5"><button type="submit" class="btn btn-dark mb-5" ng-disable="myForm.$invalid" (click)="createNewUser()">Create User</button></div>
+
+  </div>
+</form>

@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { ILogin } from './Models/ilogin';
 import * as moment from "moment";
-import {tap} from 'rxjs/internal/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { IRegister } from './Models/i-register';
 
 @Injectable({
   providedIn: 'root'
@@ -12,22 +13,11 @@ export class AuthenticationService {
   APIEndpoint = environment.APIEndpoint;
   tokenStr: string = "token";
   expirationStr: string = "expiration";
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private jwtHelper: JwtHelperService) {}
 
   Login(body: ILogin){
     return this.http.post(this.APIEndpoint+"/api/auth/login", body)
-    //.pipe(tap(res => this.setSession))
-    //.do(res => this.setSession) 
-            //.shareReplay();
   }
-
-  // private setSession(authResult) {
-  //   console.log("tap");
-  //   const expiresAt = moment().add(authResult.expiresIn,'second');
-  //   console.log("moment: "+moment());
-  //   localStorage.setItem(this.tokenStr, authResult["token"]);
-  //   localStorage.setItem(this.expirationStr, JSON.stringify(expiresAt.valueOf()) );
-  // }          
 
   logout() {
       localStorage.removeItem(this.tokenStr);
@@ -46,5 +36,28 @@ export class AuthenticationService {
       const expiration = localStorage.getItem(this.expirationStr);
       //const expiresAt = JSON.parse(expiration);
       return moment(expiration);
+  }
+  isTokenValid(){
+    const expiration = localStorage.getItem(this.expirationStr);
+    var timeDifference = moment(expiration).toDate().getTime() - new Date().getTime();
+    return timeDifference>0;
   }  
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+  public getUserName(): string {
+    return localStorage.getItem('username');
+  }
+  getRoles(){
+    return [
+      {"Id": 1, "Name": "Admin"},
+      {"Id": 2, "Name": "Client"},
+      {"Id": 3, "Name": "Hub"},
+      {"Id": 4, "Name": "Subhub"},
+    ];
+  }
+  createUser(body: IRegister){
+    return this.http.post(this.APIEndpoint+"/api/auth/register", body);
+  }
 }

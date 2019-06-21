@@ -14,6 +14,11 @@ import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { CreateConnectionComponent } from './Connections/create-connection/create-connection.component';
 import { AuthInterceptor } from './auth-interceptor';
 import { ConnectionService } from './connection.service';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AuthGuardService } from './auth-guard.service';
+import { CreateUserComponent } from './Admin/create-user/create-user.component';
+import { BasicTableComponent } from './Connections/basic-table/basic-table.component';
+import { RoleGuardService } from './role-guard.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,9 @@ import { ConnectionService } from './connection.service';
     LoginComponent,
     IndexComponent,
     ConnectionTimelineComponent,
-    CreateConnectionComponent
+    CreateConnectionComponent,
+    CreateUserComponent,
+    BasicTableComponent
   ],
   imports: [
     BrowserModule,
@@ -33,11 +40,15 @@ import { ConnectionService } from './connection.service';
   providers: [
     AuthenticationService,
     ConnectionService,
+    AuthGuardService,
+    RoleGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+        JwtHelperService
 
   ],
   bootstrap: [AppComponent]
