@@ -8,17 +8,17 @@ import { AppComponent } from './app.component';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { LoginComponent } from './login/login.component';
 import { IndexComponent } from './index/index.component';
-import { ConnectionTimelineComponent } from './connection-timeline/connection-timeline.component';
-import { AuthenticationService } from './authentication.service';
+import { ConnectionTimelineComponent } from './Connections/connection-timeline/connection-timeline.component';
+import { AuthenticationService } from './Authentication/Services/authentication.service';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { CreateConnectionComponent } from './Connections/create-connection/create-connection.component';
-import { AuthInterceptor } from './auth-interceptor';
-import { ConnectionService } from './connection.service';
+import { AuthInterceptor } from './Interceptor/auth-interceptor';
+import { ConnectionService } from './Connections/Services/connection.service';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthGuardService } from './Guards/auth-guard.service';
 import { CreateUserComponent } from './Admin/create-user/create-user.component';
 import { BasicTableComponent } from './Connections/basic-table/basic-table.component';
-import { RoleGuardService } from './role-guard.service';
+import { RoleGuardService } from './Guards/role-guard.service';
 
 @NgModule({
   declarations: [

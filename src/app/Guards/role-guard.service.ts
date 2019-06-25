@@ -4,7 +4,7 @@ import {
   CanActivate,
   ActivatedRouteSnapshot
 } from '@angular/router';
-import {AuthenticationService} from './authentication.service';
+import {AuthenticationService} from '../Authentication/Services/authentication.service';
 import decode from 'jwt-decode';
 
 @Injectable({
@@ -40,5 +40,12 @@ export class RoleGuardService implements CanActivate  {
       return false;
     return true;
 
+  }
+
+  getRole() : string {
+    const roleStr = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+    const token = localStorage.getItem('token');
+    const tokenPayload = decode(token);
+    return tokenPayload[roleStr];
   }
 }

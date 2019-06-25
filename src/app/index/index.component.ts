@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../Authentication/Services/authentication.service';
 import { Router, ActivatedRouteSnapshot } from '@angular/router';
-import { RoleGuardService } from '../role-guard.service';
+import { RoleGuardService } from '../Guards/role-guard.service';
 
 @Component({
   selector: 'app-index',

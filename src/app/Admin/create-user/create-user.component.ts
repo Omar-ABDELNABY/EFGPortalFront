@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IRegister } from 'src/app/Models/i-register';
-import { AuthenticationService } from 'src/app/authentication.service';
+import { AuthenticationService } from 'src/app/Authentication/Services/authentication.service';
 import { Router } from '@angular/router';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 

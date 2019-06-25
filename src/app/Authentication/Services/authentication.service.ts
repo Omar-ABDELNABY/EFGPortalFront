@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../environments/environment';
-import { ILogin } from './Models/ilogin';
+import { environment } from '../../../environments/environment';
+import { ILogin } from '../../Models/ilogin';
 import * as moment from "moment";
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { IRegister } from './Models/i-register';
+import { IRegister } from '../../Models/i-register';
 
 @Injectable({
   providedIn: 'root'

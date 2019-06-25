@@ -1,136 +1,153 @@
 <form id="myForm">
-    <div class="m-3 p-3">
-      <h3 >Initiate your Connection</h3>
-        <p>Please select and specify the following parameters to speed up the creation process</p>
-        <div class="pt-3 bg-white">
+  <div class="m-3 p-3">
+    <h3>Initiate your Connection</h3>
+    <p>Please select and specify the following parameters to speed up the creation process</p>
+    <div class="pt-3 bg-white">
 
-          <h6 class="ml-3 font-weight-bold">Client Details</h6>
-          <hr>
-          <div class="p-3 m-3">
-            <label for="Client">Client</label>            
-            <select #Client="ngModel" name="Client" [(ngModel)]="newConnData.clientID" [ngModelOptions]="{standalone: true}"  
-            required class="form-control mb-3">
-              <option disabled selected>Select a Client</option>
-              <option *ngFor="let c of clients$ | async" [ngValue]="c.id">{{c.name}}</option>
-            </select>
-            <div class="alert alert-danger mb-3" *ngIf="Client.touched && Client.invalid">Client is required</div>
-            <label for="oms">OMS</label>            
-            <input [(ngModel)]="newConnData.oms" [ngModelOptions]="{standalone: true}" required name="oms" class="form-control mb-3" type="text" placeholder="e.g. Custom OMS">
-            <br><br> 
-          </div>
+      <h6 class="ml-3 font-weight-bold">Client Details</h6>
+      <hr>
+      <div class="p-3 m-3">
+        <label for="Client">Client</label>
+        <select #Client="ngModel" name="Client" [(ngModel)]="newConnData.clientID"
+          required class="form-control mb-3">
+          <option disabled selected>Select a Client</option>
+          <option *ngFor="let c of clients$ | async" [ngValue]="c.id">{{c.name}}</option>
+        </select>
+        <div class="alert alert-danger mb-3" *ngIf="Client.touched && Client.invalid">Client is required</div>
+        <label for="oms">OMS</label>
+        <input [(ngModel)]="newConnData.oms"  required name="oms"
+          class="form-control mb-3" type="text" placeholder="e.g. Custom OMS">
+        <br><br>
+      </div>
 
-          <h6 class="ml-3 font-weight-bold">Five Keys</h6>
-          <hr>
-          <div class="p-3 m-3">
-            <p>Please specify the following parameters accurately to be able to build the connection the right way</p>
-            <label for="Networks">1- Networks</label>
-            <select  [(ngModel)]="newConnData.hubID" [ngModelOptions]="{standalone: true}"  
-            required name="Networks" class="form-control mb-3">
-              <option disabled selected>Select a Hub Network</option>
-              <option *ngFor="let h of hubs$ | async" [ngValue]="h.id">{{h.name}}</option>
-            </select>
+      <h6 class="ml-3 font-weight-bold">Five Keys</h6>
+      <hr>
+      <div class="p-3 m-3">
+        <p>Please specify the following parameters accurately to be able to build the connection the right way</p>
+        <label for="Networks">1- Networks</label>
+        <select [(ngModel)]="hubID" required name="Networks"
+          class="form-control mb-3">
+          <option disabled selected>Select a Hub Network</option>
+          <option *ngFor="let h of hubs$ | async" [ngValue]="h.id">{{h.name}}</option>
+        </select>
 
-            <label for="UATorProduction">2- UAT or Production</label>
-            <div class="row mb-3">
-                <div  class="col-sm-4"><input [(ngModel)]="newConnData.uat" [ngModelOptions]="{standalone: true}" required name="UATorProduction" type="radio" value="true"> UAT</div>
-                <div class="col-sm-4"><input [(ngModel)]="newConnData.uat" [ngModelOptions]="{standalone: true}" required name="UATorProduction" type="radio" value="false"> Production</div>
-            </div>
-            <label for="Region">3- Region</label>
-            <input [(ngModel)]="newConnData.targetRegion" [ngModelOptions]="{standalone: true}" required name="Region" class="form-control mb-3" type="text" placeholder="e.g. EMEA">
-            <label for="TypeOfFlow">4- Type of flow that we support</label>
-            <input [(ngModel)]="newConnData.typeOfFlow" [ngModelOptions]="{standalone: true}" required name="TypeOfFlow" class="form-control mb-3" type="text" placeholder="e.g. CARE">
-            <input required class="mr-2" type="checkbox" [(ngModel)]="showHideSubhub" [ngModelOptions]="{standalone: true}"><span>Use Subhub</span><br>
-            <label for="Subhub" *ngIf="showHideSubhub">5- Subhub</label> 
-            <select  [(ngModel)]="newConnData.subhubID" [ngModelOptions]="{standalone: true}"  
-            *ngIf="showHideSubhub" name="Subhub" class="form-control mb-3">
-              <option disabled selected>Select a Subhub</option>
-              <option *ngFor="let s of subhubs$ | async" [ngValue]="s.id">{{s.name}}</option>
-            </select>
-            <br><br> 
-          </div>
+        <label for="UATorProduction">2- UAT or Production</label>
+        <div class="row mb-3">
+          <div class="col-sm-4"><input [(ngModel)]="newConnData.uat" required
+              name="UATorProduction" type="radio" value="true"> UAT</div>
+          <div class="col-sm-4"><input [(ngModel)]="newConnData.uat"required
+              name="UATorProduction" type="radio" value="false"> Production</div>
+        </div>
+        <label for="Region">3- Region</label>
+        <input [(ngModel)]="newConnData.targetRegion" required name="Region"
+          class="form-control mb-3" type="text" placeholder="e.g. EMEA">
+        <label for="TypeOfFlow">4- Type of flow that we support</label>
+        <input [(ngModel)]="newConnData.typeOfFlow" required name="TypeOfFlow"
+          class="form-control mb-3" type="text" placeholder="e.g. CARE">
+        <input required class="mr-2" type="checkbox" [(ngModel)]="showHideSubhub"
+          [ngModelOptions]="{standalone: true}"><span>Use Subhub</span><br>
+        <label for="Subhub" *ngIf="showHideSubhub">5- Subhub</label>
+        <select [(ngModel)]="newConnData.subhubID" *ngIf="showHideSubhub"
+          name="Subhub" class="form-control mb-3">
+          <option disabled selected>Select a Subhub</option>
+          <option *ngFor="let s of subhubs$ | async" [ngValue]="s.id">{{s.name}}</option>
+        </select>
+        <br><br>
+      </div>
 
-
-          <h6 class="ml-3 font-weight-bold">Configuration Table</h6>
-          <hr>
-          <div class="p-3 m-3">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col"># Tag No.</th>
-                  <th scope="col">Tag Name</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Value</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">21</th>
-                  <td>HandlInst</td>
-                  <td>Instructions for order handling on Broker trading floor</td>
-                  <td>
-                    <input [(ngModel)]="newConnData.tag21" [ngModelOptions]="{standalone: true}" required class="form-control mb-3" type="text" placeholder="e.g. 1">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">48</th>
-                  <td>SecurityID</td>
-                  <td>CUSIP or other alternate security identifier</td>
-                  <td>
-                    <input [(ngModel)]="newConnData.tag48" [ngModelOptions]="{standalone: true}" required class="form-control mb-3" type="text">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">55</th>
-                  <td>Symbol</td>
-                  <td>Ticker symbol</td>
-                  <td>
-                    <input [(ngModel)]="newConnData.tag55" [ngModelOptions]="{standalone: true}" required class="form-control mb-3" type="text">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">100</th>
-                  <td>ExDestination</td>
-                  <td>Execution destination as defined by institution when order is entered</td>
-                  <td>
-                    <input [(ngModel)]="newConnData.tag100" [ngModelOptions]="{standalone: true}" required class="form-control mb-3" type="text" placeholder="e.g. CI">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">207</th>
-                  <td>SecurityExchange</td>
-                  <td>Market used to help identify a security</td>
-                  <td>
-                    <input [(ngModel)]="newConnData.tag207" [ngModelOptions]="{standalone: true}" required class="form-control mb-3" type="text" placeholder="e.g. CI">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Account</td>
-                  <td>Account mnemonic as agreed between broker and institution</td>
-                  <td>
-                    <input [(ngModel)]="newConnData.tag1" [ngModelOptions]="{standalone: true}" required class="form-control mb-3" type="text">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">30</th>
-                  <td>LastMkt</td>
-                  <td>Market of execution for last fill</td>
-                  <td>
-                    <input [(ngModel)]="newConnData.tag30" [ngModelOptions]="{standalone: true}" required class="form-control mb-3" type="text" placeholder="e.g. CI">
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row">115</th>
-                  <td>OnBehalfOfCompID</td>
-                  <td>Assigned value used to identify firm originating message if the message was delivered by a third party</td>
-                  <td>
-                    <input [(ngModel)]="newConnData.tag115" [ngModelOptions]="{standalone: true}" required class="form-control mb-3" type="text">
-                  </td>
-                </tr>
-            </table>
-          </div>
-
-        <div class="text-center mb-5"><button type="submit" class="btn btn-dark mb-5" ng-disable="myForm.$invalid" (click)="createNewConnection()">Create Connection</button></div>
+      <div *ngIf="hubID!=1 && hubID!=4">
+        <h6 class="ml-3 font-weight-bold">Configuration Table</h6>
+        <hr>
+        <div class="p-3 m-3">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"># Tag No.</th>
+                <th scope="col">Tag Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">21</th>
+                <td>HandlInst</td>
+                <td>Instructions for order handling on Broker trading floor</td>
+                <td>
+                  <input [(ngModel)]="newConnData.tag21" name="tag21" required
+                    class="form-control mb-3" type="text" placeholder="e.g. 1">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">48</th>
+                <td>SecurityID</td>
+                <td>CUSIP or other alternate security identifier</td>
+                <td>
+                  <input [(ngModel)]="newConnData.tag48" name="tag48" required
+                    class="form-control mb-3" type="text">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">55</th>
+                <td>Symbol</td>
+                <td>Ticker symbol</td>
+                <td>
+                  <input [(ngModel)]="newConnData.tag55" name="tag55" required
+                    class="form-control mb-3" type="text">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">100</th>
+                <td>ExDestination</td>
+                <td>Execution destination as defined by institution when order is entered</td>
+                <td>
+                  <input [(ngModel)]="newConnData.tag100" name="tag100" required
+                    class="form-control mb-3" type="text" placeholder="e.g. CI">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">207</th>
+                <td>SecurityExchange</td>
+                <td>Market used to help identify a security</td>
+                <td>
+                  <input [(ngModel)]="newConnData.tag207" name="tag207" required
+                    class="form-control mb-3" type="text" placeholder="e.g. CI">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>Account</td>
+                <td>Account mnemonic as agreed between broker and institution</td>
+                <td>
+                  <input [(ngModel)]="newConnData.tag1" name="tag1" required
+                    class="form-control mb-3" type="text">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">30</th>
+                <td>LastMkt</td>
+                <td>Market of execution for last fill</td>
+                <td>
+                  <input [(ngModel)]="newConnData.tag30" name="tag30" required
+                    class="form-control mb-3" type="text" placeholder="e.g. CI">
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">115</th>
+                <td>OnBehalfOfCompID</td>
+                <td>Assigned value used to identify firm originating message if the message was delivered by a third
+                  party</td>
+                <td>
+                  <input [(ngModel)]="newConnData.tag115" name="tag115" required
+                    class="form-control mb-3" type="text">
+                </td>
+              </tr>
+          </table>
         </div>
       </div>
+
+      <div class="text-center mb-5"><button type="submit" class="btn btn-dark mb-5" ng-disable="myForm.$invalid"
+          (click)="createNewConnection()">Create Connection</button></div>
+    </div>
+  </div>
 </form>
