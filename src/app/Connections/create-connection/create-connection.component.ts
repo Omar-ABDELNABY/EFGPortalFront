@@ -81,8 +81,8 @@ export class CreateConnectionComponent implements OnInit {
     this.newConnData.CARE=true;
     else
     {
-      this.newConnData.CARE=true;
       this.newConnData.DMA=true;
+      this.newConnData.CARE=true;
     }
     this.connectionService.createNewConnection(this.newConnData).subscribe(resp => {
       console.log(resp);
