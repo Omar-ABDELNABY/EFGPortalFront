@@ -7,7 +7,8 @@ export interface Iconnection {
     subhubID: number,
     oms: string,
     uat: boolean,
-    typeOfFlow: string,
+    DMA: boolean,
+    CARE:boolean,
 
     tag21: string,
     tag48: string,

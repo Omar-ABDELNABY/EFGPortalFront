@@ -14,6 +14,7 @@ export class CreateConnectionComponent implements OnInit {
   subhubs$;
   hubs$;
   clients$;
+  typeOfFlow;
   private _showHideSubhub: boolean = false;
     get showHideSubhub():boolean {
       return this._showHideSubhub;
@@ -74,6 +75,15 @@ export class CreateConnectionComponent implements OnInit {
 
   createNewConnection(){
     console.log(this.newConnData);
+    if (this.typeOfFlow=='DMA')
+    this.newConnData.DMA=true;
+   else if (this.typeOfFlow=='CARE')
+    this.newConnData.CARE=true;
+    else
+    {
+      this.newConnData.CARE=true;
+      this.newConnData.DMA=true;
+    }
     this.connectionService.createNewConnection(this.newConnData).subscribe(resp => {
       console.log(resp);
       this.router.navigate(['/']);
