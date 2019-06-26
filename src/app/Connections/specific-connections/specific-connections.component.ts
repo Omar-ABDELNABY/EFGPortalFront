@@ -38,7 +38,6 @@ export class SpecificConnectionsComponent implements OnInit {
     else if (this.isHub)
     {
       this.connectionService.getClientConnectionsByHub( this.clientID).subscribe(result=>{
-        console.log(result);
         this.ClientConnections=result;
       })
     }
