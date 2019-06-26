@@ -31,7 +31,6 @@ export class SpecificConnectionsComponent implements OnInit {
     if(this.isAdmin)
     {
      this.connectionService.getClientConnectionsByAdmin( this.clientID).subscribe(result=>{
-       console.log(result);
        this.ClientConnections=result;
      })
     }
