@@ -10,6 +10,7 @@ import { AuthGuardService } from './Guards/auth-guard.service';
 import { CreateUserComponent } from './Admin/create-user/create-user.component';
 import { BasicTableComponent } from './Connections/basic-table/basic-table.component';
 import { RoleGuardService } from './Guards/role-guard.service';
+import { SpecificConnectionsComponent } from './connections/specific-connections/specific-connections.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "portal/home", pathMatch: "full" },
@@ -20,7 +21,9 @@ const routes: Routes = [
     { path: "x", component: ConnectionTimelineComponent },
     { path: "createconnection", component: CreateConnectionComponent},
     { path: "createuser", component: CreateUserComponent, canActivate: [RoleGuardService],data: {expectedRole: 'Admin'}  },
-    { path: "home", component: BasicTableComponent }
+    { path: "home", component: BasicTableComponent },
+    {path:"SpecificConnections/:clientID",component:SpecificConnectionsComponent}
+
   ]}
   
   

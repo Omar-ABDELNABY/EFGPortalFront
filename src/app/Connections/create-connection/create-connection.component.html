@@ -16,6 +16,9 @@
           </select>
         <div class="alert alert-danger mb-3" *ngIf="Client.touched && Client.invalid">Client is required</div>
         </div>
+        <div *ngIf="newConnData.clientID!=null">
+          <a [routerLink]="['/portal/SpecificConnections',newConnData.clientID]">current client Connections</a>
+          </div>
         <label for="oms">OMS</label>
         <input [(ngModel)]="newConnData.oms"  required name="oms"
           class="form-control mb-3" type="text" placeholder="e.g. Custom OMS">

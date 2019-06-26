@@ -1,0 +1,27 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+        <th scope="col">ConnectionID</th>
+        <th scope="col">Region</th>
+        <th scope="col">Client</th>
+        <th scope="col">Hub</th>
+        <th scope="col">Subhub</th>
+        <th scope="col">Approved</th>
+        <th scope="col">CARE</th>
+        <th scope="col">DMA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of ClientConnections">
+      <td>c.ConnectionID</td>
+      <td>c.TargetRegion</td>
+      <td>c.Client.Name</td>
+      <td>c.Hub.Name</td>
+      <td>c.Subhub.Name</td>
+      <td>c.Approved</td>
+      <td>c.CARE</td>
+      <td>c.DMA</td>
+
+      </tr>
+    </tbody>
+  </table>

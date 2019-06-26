@@ -19,6 +19,7 @@ import { AuthGuardService } from './Guards/auth-guard.service';
 import { CreateUserComponent } from './Admin/create-user/create-user.component';
 import { BasicTableComponent } from './Connections/basic-table/basic-table.component';
 import { RoleGuardService } from './Guards/role-guard.service';
+import { SpecificConnectionsComponent } from './connections/specific-connections/specific-connections.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RoleGuardService } from './Guards/role-guard.service';
     ConnectionTimelineComponent,
     CreateConnectionComponent,
     CreateUserComponent,
-    BasicTableComponent
+    BasicTableComponent,
+    SpecificConnectionsComponent
   ],
   imports: [
     BrowserModule,
