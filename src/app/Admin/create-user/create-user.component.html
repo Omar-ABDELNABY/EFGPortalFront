@@ -19,7 +19,38 @@
           <option *ngFor="let t of types" [ngValue]="t.Id">{{t.Name}}</option>
         </select>
         <div class="alert alert-danger mb-3" *ngIf="Type.touched && Type.invalid">*Type is required</div>
-        <br><br> 
+        <br><br>
+
+        <div *ngIf="newUserData.Type==2">
+          <label for="Client">Client</label>            
+          <select #Client="ngModel" name="Client" [(ngModel)]="newUserData.ClHubSubID" 
+          required class="form-control mb-3">
+            <option disabled selected>Select a Client</option>
+            <option *ngFor="let c of clients$ | async" [ngValue]="c.id">{{c.name}}</option>
+          </select>
+          <div class="alert alert-danger mb-3" *ngIf="Client.touched && Client.invalid">*Client is required</div>
+        </div>
+
+        <div *ngIf="newUserData.Type==3">
+          <label for="Hub">Hub</label>            
+          <select #Hub="ngModel" name="Hub" [(ngModel)]="newUserData.ClHubSubID" 
+          required class="form-control mb-3">
+            <option disabled selected>Select a Hub</option>
+            <option *ngFor="let h of hubs$ | async" [ngValue]="h.id">{{h.name}}</option>
+          </select>
+          <div class="alert alert-danger mb-3" *ngIf="Hub.touched && Hub.invalid">*Hub is required</div>
+        </div>
+
+        <div *ngIf="newUserData.Type==4">
+          <label for="Subhub">Subhub</label>            
+          <select #Subhub="ngModel" name="Subhub" [(ngModel)]="newUserData.ClHubSubID" 
+          required class="form-control mb-3">
+            <option disabled selected>Select a Subhub</option>
+            <option *ngFor="let s of subhubs$ | async" [ngValue]="s.id">{{s.name}}</option>
+          </select>
+          <div class="alert alert-danger mb-3" *ngIf="Subhub.touched && Subhub.invalid">*Subhub is required</div>
+        </div>
+
         </div>
     </div>
     <div class="text-center mb-5"><button type="submit" class="btn btn-dark mb-5" ng-disable="myForm.$invalid" (click)="createNewUser()">Create User</button></div>

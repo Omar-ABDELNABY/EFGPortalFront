@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-connection.component.css']
 })
 export class CreateConnectionComponent implements OnInit {
-
+  newConnData = {} as Iconnection;
+  subhubs$;
+  hubs$;
+  clients$;
   private _showHideSubhub: boolean = false;
     get showHideSubhub():boolean {
       return this._showHideSubhub;
@@ -41,10 +44,7 @@ export class CreateConnectionComponent implements OnInit {
       this.newConnData.tag55 = null;
     }
 
-  newConnData = {} as Iconnection;
-  subhubs$;
-  hubs$;
-  clients$;
+  
   constructor(private connectionService: ConnectionService,
     private router: Router) { 
       this.subhubs$ = connectionService.getSubhubs();

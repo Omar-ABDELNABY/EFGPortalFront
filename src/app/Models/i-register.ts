@@ -3,4 +3,5 @@ export interface IRegister {
     Email: string,
     Password: string,
     Type: number
+    ClHubSubID: number
 }
