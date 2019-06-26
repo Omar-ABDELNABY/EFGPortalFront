@@ -7,51 +7,88 @@
       <h6 class="ml-3 font-weight-bold">Client Details</h6>
       <hr>
       <div class="p-3 m-3">
-        <label for="Client">Client</label>
-        <select #Client="ngModel" name="Client" [(ngModel)]="newConnData.clientID"
-          required class="form-control mb-3">
-          <option disabled selected>Select a Client</option>
-          <option *ngFor="let c of clients$ | async" [ngValue]="c.id">{{c.name}}</option>
-        </select>
+        <div *ngIf="!isClient">
+          <label for="Client">Client</label>
+          <select #Client="ngModel" name="Client" [(ngModel)]="newConnData.clientID"
+            required class="form-control mb-3">
+            <option disabled selected>Select a Client</option>
+            <option *ngFor="let c of clients$ | async" [ngValue]="c.id">{{c.name}}</option>
+          </select>
         <div class="alert alert-danger mb-3" *ngIf="Client.touched && Client.invalid">Client is required</div>
+        </div>
         <label for="oms">OMS</label>
         <input [(ngModel)]="newConnData.oms"  required name="oms"
           class="form-control mb-3" type="text" placeholder="e.g. Custom OMS">
         <br><br>
       </div>
 
-      <h6 class="ml-3 font-weight-bold">Five Keys</h6>
+      <h6 class="ml-3 font-weight-bold">Connection Keys</h6>
       <hr>
       <div class="p-3 m-3">
         <p>Please specify the following parameters accurately to be able to build the connection the right way</p>
-        <label for="Networks">1- Networks</label>
-        <select [(ngModel)]="hubID" required name="Networks"
-          class="form-control mb-3">
-          <option disabled selected>Select a Hub Network</option>
-          <option *ngFor="let h of hubs$ | async" [ngValue]="h.id">{{h.name}}</option>
-        </select>
+        
+        <div *ngIf="!isHub">
+          <label for="Networks">Networks</label>
+          <select [(ngModel)]="hubID" required name="Networks"
+            class="form-control mb-3">
+            <option disabled selected>Select a Hub Network</option>
+            <option *ngFor="let h of hubs$ | async" [ngValue]="h.id">{{h.name}}</option>
+          </select>
+        </div>
 
-        <label for="UATorProduction">2- UAT or Production</label>
+        <div *ngIf="isBloomberg || isReuters">
+          <label for="Networks">Networks</label>
+          <select [(ngModel)]="hubID" required name="Networks"
+            class="form-control mb-3">
+            <option disabled selected>Select a Hub Network</option>
+            <option *ngIf="isBloomberg" [ngValue]="1">ESMX</option>
+            <option *ngIf="isBloomberg" [ngValue]="2">ESMX Net</option>
+            <option *ngIf="isReuters" [ngValue]="3">Autex</option>
+            <option *ngIf="isReuters" [ngValue]="4">REDI</option>
+          </select>
+        </div>
+
+        <label for="UATorProduction">UAT or Production</label>
         <div class="row mb-3">
           <div class="col-sm-4"><input [(ngModel)]="newConnData.uat" required
               name="UATorProduction" type="radio" value="true"> UAT</div>
           <div class="col-sm-4"><input [(ngModel)]="newConnData.uat"required
               name="UATorProduction" type="radio" value="false"> Production</div>
         </div>
+        
         <label for="Region">3- Region</label>
-        <input [(ngModel)]="newConnData.targetRegion" required name="Region"
-          class="form-control mb-3" type="text" placeholder="e.g. EMEA">
-        <label for="TypeOfFlow">4- Type of flow that we support</label>
-        <input [(ngModel)]="newConnData.typeOfFlow" required name="TypeOfFlow"
-          class="form-control mb-3" type="text" placeholder="e.g. CARE">
-        <input required class="mr-2" type="checkbox" [(ngModel)]="showHideSubhub"
+        <div>
+          <select [(ngModel)]="newConnData.targetRegion" required name="Region"
+          class="form-control mb-3" >
+            <option value="" disabled>Select Region</option>
+            <option value="EMEA">EMEA</option>
+            <option value="ASIA">ASIA</option>
+            <option value="US">US</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </div>
+           
+      <label for="TypeOfFlow">4- Type of flow that we support</label>
+        <div>
+          <select [(ngModel)]="newConnData.typeOfFlow" required name="TypeOfFlow"
+          class="form-control mb-3" >
+            <option value="" disabled>Select TypeOfFlow</option>
+                  <option value="CARE">CARE</option>
+                  <option value="DMA">DMA</option>
+                  <option value="BOTH">BOTH</option>
+          </select>
+        </div>
+        
+        <div *ngIf="!isSubhub">
+          <input required class="mr-2" type="checkbox" [(ngModel)]="showHideSubhub"
           [ngModelOptions]="{standalone: true}"><span>Use Subhub</span><br>
-        <label for="Subhub" *ngIf="showHideSubhub">5- Subhub</label>
-        <select [(ngModel)]="newConnData.subhubID" *ngIf="showHideSubhub"
-          name="Subhub" class="form-control mb-3">
-          <option disabled selected>Select a Subhub</option>
-          <option *ngFor="let s of subhubs$ | async" [ngValue]="s.id">{{s.name}}</option>
-        </select>
+          <label for="Subhub" *ngIf="showHideSubhub">Subhub</label>
+          <select [(ngModel)]="newConnData.subhubID" *ngIf="showHideSubhub"
+            name="Subhub" class="form-control mb-3">
+            <option disabled selected>Select a Subhub</option>
+            <option *ngFor="let s of subhubs$ | async" [ngValue]="s.id">{{s.name}}</option>
+          </select>
+        </div>
         <br><br>
       </div>
 

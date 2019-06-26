@@ -11,6 +11,8 @@ import { RoleGuardService } from '../Guards/role-guard.service';
 export class IndexComponent implements OnInit {
 
   isAdmin: boolean = false;
+
+  
    
   constructor(private authenticationService: AuthenticationService,
     private router: Router, private roleGuardService: RoleGuardService) {

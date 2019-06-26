@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', resp["token"]);
       localStorage.setItem("expiration", resp["expiration"] );
       localStorage.setItem("username", resp["claims"][1].value );
+      localStorage.setItem("hubId", resp["claims"][3].value );
       console.log(resp);
       this.router.navigate(['/']);
     });

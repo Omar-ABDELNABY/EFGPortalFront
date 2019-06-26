@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Iconnection } from 'src/app/Models/iconnection';
 import { ConnectionService } from 'src/app/Connections/Services/connection.service';
 import { Router } from '@angular/router';
+import { RoleGuardService } from 'src/app/Guards/role-guard.service';
 
 @Component({
   selector: 'app-create-connection',
@@ -43,14 +44,31 @@ export class CreateConnectionComponent implements OnInit {
       this.newConnData.tag48 = 
       this.newConnData.tag55 = null;
     }
+    isAdmin: boolean = false;
+    isClient: boolean = false;
+    isHub: boolean = false;
+    isSubhub: boolean = false;
+
+    isBloomberg: boolean = false;
+    isReuters: boolean = false;
+    isFidessa: boolean = false;
 
   
   constructor(private connectionService: ConnectionService,
-    private router: Router) { 
+              private roleGuardService: RoleGuardService,
+              private router: Router) { 
       this.subhubs$ = connectionService.getSubhubs();
       this.hubs$ = connectionService.getHubs();
       this.clients$ = connectionService.getClients();
-      }
+      this.isAdmin = roleGuardService.isAdmin();
+      this.isClient = roleGuardService.isClient();
+      this.isHub = roleGuardService.isHub();
+      this.isSubhub = roleGuardService.isSubhub();
+      
+      this.isBloomberg = roleGuardService.isBloomberg();
+      this.isReuters = roleGuardService.isReuters();
+      this.isFidessa = roleGuardService.isFidessa();
+    }
 
 
 
