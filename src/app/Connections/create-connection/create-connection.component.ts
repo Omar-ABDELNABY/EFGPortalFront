@@ -30,9 +30,14 @@ export class CreateConnectionComponent implements OnInit {
       return this.newConnData.hubID;
     }
     set hubID(val:number) {
+      this.showHideSubhub = false;  
       if(val==1 || val == 4)
         this.setConnectionsTags();
-        this.newConnData.hubID = val;
+      if(val==1){
+        this.newConnData.uat = false;
+        this.showHideSubhub = false;        //to be replaced with no subhub
+      }
+      this.newConnData.hubID = val;
     }
 
     private setConnectionsTags(){
@@ -89,6 +94,11 @@ export class CreateConnectionComponent implements OnInit {
       this.router.navigate(['/']);
     });
   }
+  setUAT(val: boolean): void   
+  {  
+        this.newConnData.uat = val;  
+  }  
+  
 
   ngOnInit() {
   }

@@ -53,10 +53,10 @@
 
         <label for="UATorProduction">UAT or Production</label>
         <div class="row mb-3">
-          <div class="col-sm-4"><input [(ngModel)]="newConnData.uat" required
-              name="UATorProduction" type="radio" value="true"> UAT</div>
-          <div class="col-sm-4"><input [(ngModel)]="newConnData.uat"required
-              name="UATorProduction" type="radio" value="false"> Production</div>
+          <div class="col-sm-4"><input required (click)="setUAT(true)" ngModel [checked] = "newConnData.uat"
+              name="UATorProduction" type="radio" value="true"><label for="UATorProduction"> UAT</label></div>
+          <div class="col-sm-4"><input required (click)="setUAT(false)" ngModel [checked] = "!newConnData.uat"
+              name="UATorProduction" type="radio" value="false"><label for="UATorProduction"> Production</label></div>
         </div>
         
         <label for="Region">Region</label>
