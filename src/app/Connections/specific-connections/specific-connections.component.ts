@@ -11,14 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 export class SpecificConnectionsComponent implements OnInit {
   isAdmin: boolean = false;
   isHub: boolean = false;
+  isSubhub: boolean = false;
   clientID;
-  ClientConnections;
+  ClientConnections$  = null;
   constructor(private roleGuardService: RoleGuardService,
     private connectionService: ConnectionService,
     private route:ActivatedRoute) {
          
   this.isAdmin=roleGuardService.isAdmin();
   this.isHub=roleGuardService.isHub();
+  this.isSubhub=roleGuardService.isSubhub();
   }
 
   ngOnInit() {
@@ -30,15 +32,16 @@ export class SpecificConnectionsComponent implements OnInit {
     console.log(this.isHub);
     if(this.isAdmin)
     {
-     this.connectionService.getClientConnectionsByAdmin( this.clientID).subscribe(result=>{
-       this.ClientConnections=result;
-     })
+     this.ClientConnections$ = this.connectionService.getClientConnectionsByAdmin( this.clientID);
+     
     }
     else if (this.isHub)
     {
-      this.connectionService.getClientConnectionsByHub( this.clientID).subscribe(result=>{
-        this.ClientConnections=result;
-      })
+      this.ClientConnections$ = this.connectionService.getClientConnectionsByHub( this.clientID);
+    }
+    else if (this.isSubhub)
+    {
+      this.ClientConnections$ = this.connectionService.getClientConnectionsBySubhub( this.clientID);
     }
   
   }

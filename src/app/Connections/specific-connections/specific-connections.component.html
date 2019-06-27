@@ -12,16 +12,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let i of ClientConnections">
-      <td>{{c.ConnectionID}}</td>
-      <td>{{c.TargetRegion}}</td>
-      <td>{{c.Client.Name}}</td>
-      <td>{{c.Hub.Name}}</td>
-      <td>{{c.Subhub.Name}}</td>
-      <td>{{c.Approved}}</td>
-      <td>{{c.CARE}}</td>
-      <td>{{c.DMA}}</td>
-
-      </tr>
+    <tr *ngFor="let c of ClientConnections$ | async">
+      <td>{{c["connectionID"]}}</td>
+      <td>{{c["targetRegion"]}}</td>
+      <td>{{c["client"]["name"]}}</td>
+      <td>{{c["hub"]["name"]}}</td>
+      <td>{{c["subHub"]?c["subHub"]["name"]:NONE}}</td>
+      <td>{{c["approval"]}}</td>
+      <td>{{c["care"]}}</td>
+      <td>{{c["dma"]}}</td>
+    </tr>
     </tbody>
   </table>

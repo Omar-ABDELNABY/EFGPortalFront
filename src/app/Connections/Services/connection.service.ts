@@ -34,6 +34,9 @@ export class ConnectionService {
   getClientConnectionsByHub(clientID){
     return this.http.get(this.APIEndpoint+"/api/connections/clientConnectionsByHub/"+clientID)
   }
+  getClientConnectionsBySubhub(clientID){
+    return this.http.get(this.APIEndpoint+"/api/connections/clientConnectionsBySubhub/"+clientID)
+  }
   
 
 }
